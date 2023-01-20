@@ -1,2 +1,6 @@
-# eddnur20231
-Estructura de datos - Universidad NUR - Semestre 1 Año 20223
+# Estructura de datos
+## Gestión 2023 Semestre 1
+### Vladimir Calderón Yaksic
+
+En este repositorio se colocará todo el código
+relacionado con la materia de Estructura de Datos.
