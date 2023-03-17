@@ -19,13 +19,19 @@
             <DefaultRolloverStrategy max="5" />
         </RollingFile>
 
-        <SMTP name="Mail" subject="Error Logs de P3" to="errors@logging.apache.org" from="test@logging.apache.org"
-              smtpHost="smtp.mailtrap.io" smtpPort="2525" bufferSize="5" smtpUsername="1a8ee6d1d3c428" smtpPassword="2b60fb6f106b26">
+        <SMTP name="Mail"
+              subject="Error Logs de P3" to="errors@p3.nur.edu"
+              from="test@p3.nur.edu"
+              smtpHost="sandbox.smtp.mailtrap.io"
+              smtpPort="2525" bufferSize="5"
+              smtpUsername="1a8ee6d1d3c428" smtpPassword="2b60fb6f106b26">
         </SMTP>
     </Appenders>
     <Loggers>
         <Root level="debug">
             <AppenderRef ref="Console" level="debug"/>
+            <AppenderRef ref="rollingFile" level="debug"/>
+            <AppenderRef ref="Mail" level="error"/>
         </Root>
     </Loggers>
 </Configuration>
