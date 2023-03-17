@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level (%F:%L) %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile
+                name="rollingFile"
+                fileName="logs/application.log"
+                filePattern="logs/application.%i.log.gz"
+                ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p (%F:%L) %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="5" />
+        </RollingFile>
+
+        <SMTP name="Mail" subject="Error Logs de P3" to="errors@logging.apache.org" from="test@logging.apache.org"
+              smtpHost="smtp.mailtrap.io" smtpPort="2525" bufferSize="5" smtpUsername="1a8ee6d1d3c428" smtpPassword="2b60fb6f106b26">
+        </SMTP>
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console" level="debug"/>
+        </Root>
+    </Loggers>
+</Configuration>
