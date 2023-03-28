@@ -14,4 +14,9 @@ public class Anillo {
     public Anillo(int t) {
         tamano = t;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(tamano);
+    }
 }

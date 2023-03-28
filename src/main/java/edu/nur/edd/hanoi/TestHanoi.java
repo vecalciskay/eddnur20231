@@ -1,9 +1,19 @@
 package edu.nur.edd.hanoi;
 
+import edu.nur.edd.hanoi.objects.Hanoi;
+
 public class TestHanoi {
     public static void main(String[] args) {
-        TestHanoi h = new TestHanoi();
-        h.resolver(0, 2, 1, 3);
+        /*TestHanoi h = new TestHanoi();
+        h.resolver(0, 2, 1, 3);*/
+
+        int n = 3;
+        Hanoi h = new Hanoi(n);
+        System.out.println(h);
+
+        h.resolver(0, 2, 1, n);
+
+        System.out.println(h);
     }
 
     /**
