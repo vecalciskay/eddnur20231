@@ -32,4 +32,8 @@ public class Torre {
         }
         return resultado.toString();
     }
+
+    public Stack<Anillo> getAnillos() {
+        return anillos;
+    }
 }

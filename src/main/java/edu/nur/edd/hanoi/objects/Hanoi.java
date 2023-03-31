@@ -2,6 +2,7 @@ package edu.nur.edd.hanoi.objects;
 
 import edu.nur.edd.hanoi.tests.ObservadorHanoiConsola;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class Hanoi {
@@ -47,7 +48,11 @@ public class Hanoi {
     }
 
     public void adjuntarObservador(
-            ObservadorHanoiConsola observador) {
+            PropertyChangeListener observador) {
         observado.addPropertyChangeListener(observador);
+    }
+
+    public Torre[] getTorres() {
+        return torres;
     }
 }

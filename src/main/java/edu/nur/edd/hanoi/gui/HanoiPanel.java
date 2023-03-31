@@ -30,10 +30,9 @@ implements PropertyChangeListener {
         if (modelo == null) {
             return;
         }
-/*
+
         DibujoHanoi dibujo = new DibujoHanoi(modelo);
         dibujo.dibujar(g, 20, 350);
 
- */
     }
 }
