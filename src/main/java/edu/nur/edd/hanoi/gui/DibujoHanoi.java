@@ -30,6 +30,7 @@ public class DibujoHanoi {
     private void dibujarTorre(Graphics g, Torre t, int x, int y) {
         int ax = x;
         int ay = y - 30;
+
         for (Anillo a : t.getAnillos()) {
             g.fillRect(ax, ay, a.getTamano()*20, 10);
             ay -= 20;
