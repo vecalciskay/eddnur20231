@@ -4,6 +4,7 @@ import edu.nur.edd.hanoi.objects.Hanoi;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -31,8 +32,14 @@ implements PropertyChangeListener {
             return;
         }
 
-        DibujoHanoi dibujo = new DibujoHanoi(modelo);
-        dibujo.dibujar(g, 20, 350);
+        BufferedImage rsm = new BufferedImage(
+                600,400, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2d = rsm.createGraphics();
 
+        g2d.setColor(Color.black);
+        DibujoHanoi dibujo = new DibujoHanoi(modelo);
+        dibujo.dibujar(g2d, 20, 350);
+
+        g.drawImage(rsm, 0, 0, null);
     }
 }

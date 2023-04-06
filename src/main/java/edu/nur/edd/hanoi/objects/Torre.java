@@ -1,9 +1,10 @@
 package edu.nur.edd.hanoi.objects;
 
+import java.io.Serializable;
 import java.util.Stack;
 
-public class Torre {
-    private Stack<Anillo> anillos;
+public class Torre implements Serializable {
+    private final Stack<Anillo> anillos;
 
     public Torre() {
         anillos = new Stack<>();

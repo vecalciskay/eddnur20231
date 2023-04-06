@@ -1,14 +1,12 @@
 package edu.nur.edd.hanoi.objects;
 
-public class Anillo {
-    private int tamano;
+import java.io.Serializable;
+
+public class Anillo implements Serializable {
+    private final int tamano;
 
     public int getTamano() {
         return tamano;
-    }
-
-    public void setTamano(int tamano) {
-        this.tamano = tamano;
     }
 
     public Anillo(int t) {

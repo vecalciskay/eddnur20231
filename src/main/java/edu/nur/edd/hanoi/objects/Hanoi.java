@@ -1,12 +1,10 @@
 package edu.nur.edd.hanoi.objects;
-
-import edu.nur.edd.hanoi.tests.ObservadorHanoiConsola;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.Serializable;
 
-public class Hanoi {
-    private Torre[] torres;
+public class Hanoi implements Serializable {
+    private final Torre[] torres;
 
     private PropertyChangeSupport observado;
 
@@ -21,6 +19,12 @@ public class Hanoi {
 
     public void resolver(int de, int a, int pp, int n) {
         if (n == 1) {
+
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             moverDeA(de,a);
         } else {
             resolver(de, pp, a, n - 1);

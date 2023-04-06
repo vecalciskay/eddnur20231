@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class HanoiFrame extends JFrame {
-    private Hanoi modelo ;
+    private final Hanoi modelo ;
     public HanoiFrame() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new BorderLayout());
@@ -35,7 +35,13 @@ public class HanoiFrame extends JFrame {
     }
 
     private void btnHacer_clicked() {
-        modelo.resolver(0,2,1,3);
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                modelo.resolver(0,2,1,3);
+            }
+        });
+        t.start();
     }
 
     public static void main(String[] args) {
