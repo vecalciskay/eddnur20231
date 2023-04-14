@@ -26,6 +26,7 @@ implements PropertyChangeListener {
 
     @Override
     protected void paintComponent(Graphics g) {
+
         super.paintComponent(g);
 
         if (modelo == null) {
@@ -41,5 +42,6 @@ implements PropertyChangeListener {
         dibujo.dibujar(g2d, 20, 350);
 
         g.drawImage(rsm, 0, 0, null);
+
     }
 }
