@@ -30,8 +30,7 @@
     <Loggers>
         <Root level="debug">
             <AppenderRef ref="Console" level="debug"/>
-            <AppenderRef ref="rollingFile" level="debug"/>
-            <AppenderRef ref="Mail" level="error"/>
+            <AppenderRef ref="rollingFile" level="error"/>
         </Root>
     </Loggers>
 </Configuration>
