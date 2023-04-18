@@ -62,21 +62,6 @@ public class Imagen {
         observado.firePropertyChange("IMAGEN", false, true);
     }
 
-    public void bandera() {
-        for (int i = 0; i < ancho; i++) {
-            for (int j = 0; j < alto/3; j++) {
-                pixeles[i][j] = 0xFF0000;
-            }
-            for (int j = alto/3; j < 2*alto/3; j++) {
-                pixeles[i][j] = 0xF8F32B;
-            }
-            for (int j = 2*alto/3; j < alto; j++) {
-                pixeles[i][j] = 0x32CD32;
-            }
-        }
-        observado.firePropertyChange("IMAGEN", false, true);
-    }
-
     public void leer(File f) {
         BufferedImage bi = null;
         try {
@@ -102,9 +87,9 @@ public class Imagen {
     public void gris() {
         for (int i = 0; i < ancho; i++) {
             for (int j = 0; j < alto; j++) {
-                int r = pixeles[i][j] >> 16;
-                int g = (pixeles[i][j] >> 8) & 0x0000FF;
-                int b = pixeles[i][j] & 0x0000FF;
+                int r = (pixeles[i][j] >> 16) & 0x000000FF;
+                int g = (pixeles[i][j] >> 8) & 0x000000FF;
+                int b = pixeles[i][j] & 0x000000FF;
                 int prom = (r+g+b)/3;
 
                 pixeles[i][j] = prom + prom * 256 + prom * 256 * 256;
@@ -115,5 +100,9 @@ public class Imagen {
 
     public void addObserver(PropertyChangeListener listener) {
         observado.addPropertyChangeListener(listener);
+    }
+
+    public void cambiosImagen() {
+        observado.firePropertyChange("IMAGEN", false, true);
     }
 }

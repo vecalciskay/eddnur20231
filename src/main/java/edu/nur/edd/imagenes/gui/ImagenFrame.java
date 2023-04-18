@@ -1,6 +1,8 @@
 package edu.nur.edd.imagenes.gui;
 
+import edu.nur.edd.imagenes.obj.ComandoFiltro;
 import edu.nur.edd.imagenes.obj.Imagen;
+import edu.nur.edd.imagenes.obj.filtros.Bandera;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -53,6 +55,14 @@ public class ImagenFrame extends JFrame {
         });
         menu.add(item);
 
+        item = new JMenuItem("Bandera");
+        item.addActionListener(e -> {
+            logger.info("El usuario convierte la imagen en una bandera BOB");
+            ComandoFiltro cmd = new Bandera(modelo);
+            cmd.ejecutar();
+        });
+        menu.add(item);
+
         bar.add(menu);
 
         this.setJMenuBar(bar);
@@ -66,6 +76,7 @@ public class ImagenFrame extends JFrame {
             logger.info(chooser.getSelectedFile().getAbsolutePath());
             modelo.leer(chooser.getSelectedFile());
         }
+        this.pack();
     }
 
     public static void main(String[] args) {
