@@ -13,3 +13,5 @@ para que la nota del estudiante alcance niveles que permitan pasar la
 materia y al mismo tiempo sirven de repaso al momento del examen final.
 
 * Práctico 1: [Observer](p1/README.md)
+* Práctico 2: [Filtros de imágenes](p2/README.md)
+* Práctico 3: [Juego en línea](p3/README.md)

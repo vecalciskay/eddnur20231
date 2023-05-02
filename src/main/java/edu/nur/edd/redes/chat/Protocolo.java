@@ -38,7 +38,7 @@ public class Protocolo {
                 String mensaje = "";
                 if (linea.matches(regexMsg)) {
                     mensaje = linea.replaceFirst(regexMsg, "$1");
-                    logger.info("Mensaje: {0}", mensaje);
+                    logger.info("Mensaje: {0}", mensaje.toString());
                 } else {
                     logger.warn("Comando desconocido");
                 }

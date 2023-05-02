@@ -15,7 +15,7 @@ public class ServidorClienteChatFrame extends JFrame {
     private static final Logger logger = LogManager.getRootLogger();
 
     public ServidorClienteChatFrame() {
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.getContentPane().setLayout(new BorderLayout());
 
         initMenu();
@@ -32,21 +32,15 @@ public class ServidorClienteChatFrame extends JFrame {
 
         JMenu menu = new JMenu("Archivo");
         JMenuItem item = new JMenuItem("Esperar Conexión");
-        item.addActionListener(e -> {
-            menuArchivo_EsperarConexion();
-        });
+        item.addActionListener(e -> menuArchivo_EsperarConexion());
         menu.add(item);
 
         item = new JMenuItem("Conectar");
-        item.addActionListener(e -> {
-            menuArchivo_Conectar();
-        });
+        item.addActionListener(e -> menuArchivo_Conectar());
         menu.add(item);
 
         item = new JMenuItem("Salir");
-        item.addActionListener(e -> {
-            System.exit(0);
-        });
+        item.addActionListener(e -> System.exit(0));
         menu.add(item);
 
         bar.add(menu);
@@ -99,9 +93,14 @@ public class ServidorClienteChatFrame extends JFrame {
             logger.error("No pudo abrir el puerto", e);
         } finally {
             if (clt != null)
-                try { clt.close();} catch(Exception e) {}
+                try { clt.close();} catch(Exception e) {
+                    logger.error("Error al cerrar el socket", e);
+                }
             if (srv != null) {
-                try { srv.close();} catch(Exception e) {}
+                try { srv.close();}
+                catch(Exception e) {
+                    logger.error("Error al cerrar el server socket", e);
+                }
             }
         }
     }
