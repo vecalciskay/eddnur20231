@@ -40,7 +40,7 @@ public class ServidorClienteChatPanel extends JPanel {
         JButton botonDesconectar = new JButton("Desconectar");
         botonDesconectar.addActionListener(e -> {
             logger.info("Se termina la comunicacion enviando EXIT");
-            modelo.envioMensaje(Protocolo.SALIR);
+            modelo.envioSalir();
         });
         this.add(botonDesconectar, BorderLayout.NORTH);
 

@@ -59,21 +59,9 @@ public class ServidorClienteChatFrame extends JFrame {
             }
         }
 
-        try  {
-            Socket clt = new Socket(ipServidor, Protocolo.PUERTO);
-            logger.info("El usuario se conectó al servidor");
-            iniciar(clt);
-        } catch(IOException e) {
-            logger.error("Error al conectar con el servidor", e);
-            JOptionPane.showMessageDialog(this, "Error al conectar con el servidor", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
+        final String ip = ipServidor;
 
-    private void iniciar(Socket clt) {
-        Protocolo protocolo = new Protocolo(clt);
-        Conversacion conversacion = Conversacion.getOrCreate();
-        conversacion.setProtocolo(protocolo);
-        Thread t = new Thread(() -> protocolo.procesarRecepcion());
+        Thread t = new Thread(() -> conectar(ip));
         t.start();
     }
 
@@ -81,6 +69,12 @@ public class ServidorClienteChatFrame extends JFrame {
         JOptionPane.showMessageDialog(this,
                 "Al cerrar esta ventana comenzara a escuchar", "Mensaje",
                 JOptionPane.INFORMATION_MESSAGE);
+
+        Thread t = new Thread(() -> esperarConexion());
+        t.start();
+    }
+
+    public void esperarConexion() {
 
         ServerSocket srv = null;
         Socket clt = null;
@@ -103,5 +97,23 @@ public class ServidorClienteChatFrame extends JFrame {
                 }
             }
         }
+    }
+
+    public void conectar(String ipServidor) {
+        try  {
+            Socket clt = new Socket(ipServidor, Protocolo.PUERTO);
+            logger.info("El usuario se conectó al servidor");
+            iniciar(clt);
+        } catch(IOException e) {
+            logger.error("Error al conectar con el servidor", e);
+            JOptionPane.showMessageDialog(this, "Error al conectar con el servidor", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void iniciar(Socket clt) {
+        Protocolo protocolo = new Protocolo(clt);
+        Conversacion conversacion = Conversacion.getOrCreate();
+        conversacion.setProtocolo(protocolo);
+        protocolo.procesarRecepcion();
     }
 }

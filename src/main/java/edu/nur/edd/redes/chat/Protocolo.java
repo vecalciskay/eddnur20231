@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -24,7 +25,13 @@ public class Protocolo {
             in = new BufferedReader(new InputStreamReader(cliente.getInputStream()));
             out = new PrintWriter(cliente.getOutputStream(), true);
         } catch (Exception e) {
+            try {
+                cliente.close();
+            } catch (IOException ex) {
+                logger.error("No pudo cerrar el socket");
+            }
             logger.error("Error al crear el protocolo", e);
+            return;
         }
     }
 
@@ -38,7 +45,7 @@ public class Protocolo {
                 String mensaje = "";
                 if (linea.matches(regexMsg)) {
                     mensaje = linea.replaceFirst(regexMsg, "$1");
-                    logger.info("Mensaje: {0}", mensaje.toString());
+                    logger.info("Mensaje: " + mensaje.toString());
                 } else {
                     logger.warn("Comando desconocido");
                 }
@@ -60,7 +67,18 @@ public class Protocolo {
     }
 
     public void enviarMensaje(String texto) {
-        logger.info("Envia: {0}", texto);
+        logger.info("Envia: " + texto);
         out.println(MENSAJE + " " + texto);
+    }
+
+    public void enviarSalir() {
+        logger.info("Envia: Salir");
+        out.println(SALIR);
+
+        try {
+            cliente.close();
+        } catch (IOException e) {
+            logger.warn("El socket cliente ya estaba cerrado");
+        }
     }
 }

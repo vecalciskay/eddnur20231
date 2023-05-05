@@ -32,7 +32,7 @@ public class DibujoChatPanel extends JPanel implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
         Conversacion conversacion = Conversacion.getOrCreate();
-        logger.info("*{0}", (conversacion == null ? "NULL" : conversacion.toString()));
+        logger.info((conversacion == null ? "NULL" : conversacion.toString()));
         repaint();
     }
 }

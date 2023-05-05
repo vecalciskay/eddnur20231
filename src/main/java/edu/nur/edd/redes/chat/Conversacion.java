@@ -39,6 +39,10 @@ public class Conversacion {
         }
     }
 
+    public void envioSalir() {
+        protocolo.enviarSalir();
+    }
+
     public void envioMensaje(String texto) {
         protocolo.enviarMensaje(texto);
         addMensaje(texto, true);
