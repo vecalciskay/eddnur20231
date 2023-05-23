@@ -2,47 +2,39 @@ package edu.nur.edd.listas;
 
 import java.util.Iterator;
 
-public class Lista<E> implements Iterable<E> {
-    private Nodo<E> raiz;
-
-    public Lista() {
+public class ListaDoble<E> implements Iterable<E> {
+    protected Nodo<E> raiz;
+    protected Nodo<E> cola;
+    protected int cantidad;
+    public ListaDoble() {
         raiz = null;
+        cola = null;
+        cantidad = 0;
     }
-
     public void insertar(E o) {
         Nodo<E> nuevo = new Nodo<>(o);
         nuevo.setSiguiente(raiz);
+        if (raiz != null) {
+            raiz.setAnterior(nuevo);
+        } else {
+            cola = nuevo;
+        }
         raiz = nuevo;
-    }
-
-    public void agregar(E o) {
-        if (raiz == null) {
-            insertar(o);
-            return;
-        }
-
-        Nodo<E> actual = raiz;
-        while(actual.getSiguiente() != null) {
-            actual = actual.getSiguiente();
-        }
-
-        Nodo<E> nuevo = new Nodo<>(o);
-        actual.setSiguiente(nuevo);
+        cantidad++;
     }
 
     public int tamano() {
-        int contador = 0;
-        Nodo<E> actual = raiz;
-        while(actual != null) {
-            contador++;
-            actual = actual.getSiguiente();
-        }
-
-        return contador;
+        return cantidad;
+    }
+    @Override
+    public Iterator<E> iterator() {
+        return null;
     }
 
-    @Override
     public String toString() {
+        if (raiz == null ) {
+            return "(" + cantidad + ") [VACIA]";
+        }
         StringBuilder resultado = new StringBuilder();
         resultado.append("(").append(tamano()).append(") : ");
         Nodo<E> actual = raiz;
@@ -53,17 +45,15 @@ public class Lista<E> implements Iterable<E> {
         return resultado.toString();
     }
 
-    public Iterator<E> iterator() {
-        return new ListaIterator<>(raiz);
-    }
-
     class Nodo<E> {
         private E contenido;
         private Nodo<E> siguiente;
+        private Nodo<E> anterior;
 
         public Nodo(E o) {
             contenido = o;
             siguiente = null;
+            anterior = null;
         }
 
         public E getContenido() {
@@ -82,17 +72,24 @@ public class Lista<E> implements Iterable<E> {
             this.siguiente = siguiente;
         }
 
+        public Nodo<E> getAnterior() {
+            return anterior;
+        }
+
+        public void setAnterior(Nodo<E> anterior) {
+            this.anterior = anterior;
+        }
         @Override
         public String toString() {
             return contenido.toString();
         }
     }
 
-    class ListaIterator<E> implements Iterator<E> {
+    class ListaDobleIterator<E> implements Iterator<E> {
 
         private Nodo<E> actual;
 
-        public ListaIterator(Nodo<E> r) {
+        public ListaDobleIterator(Nodo<E> r) {
             actual = r;
         }
 
