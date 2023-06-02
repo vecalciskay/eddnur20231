@@ -21,13 +21,16 @@ public class ListaOrdenada<E> extends ListaDoble<E> {
             super.insertar(o);
             return;
         }
-        while(comparableO.compareTo(
+        while(actual.getSiguiente() != null &&
+                comparableO.compareTo(
                 actual.getSiguiente().getContenido()) >= 0) {
             actual = actual.getSiguiente();
         }
 
         nuevo.setSiguiente(actual.getSiguiente());
-        actual.getSiguiente().setAnterior(nuevo);
+        if (actual.getSiguiente() != null) {
+            actual.getSiguiente().setAnterior(nuevo);
+        }
         actual.setSiguiente(nuevo);
         nuevo.setAnterior(actual);
 

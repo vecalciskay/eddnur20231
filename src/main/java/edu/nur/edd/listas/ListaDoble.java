@@ -28,7 +28,7 @@ public class ListaDoble<E> implements Iterable<E> {
     }
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new ListaDobleIterator<>(raiz);
     }
 
     public String toString() {

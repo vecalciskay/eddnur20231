@@ -1,28 +1,27 @@
 package edu.nur.edd.listas;
 
 public class Persona implements Comparable<Persona> {
+    private long ci;
     private String nombre;
     private int edad;
 
-    public Persona(String n, int e) {
+    public Persona(long ci, String n, int e) {
+        this.ci = ci;
         nombre = n;
         edad = e;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + edad + ")";
     }
 
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
     public int getEdad() {
         return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
     }
 
     @Override
