@@ -24,12 +24,14 @@ public class Arbol<E> {
 
         if (raiz == null) {
             raiz = nuevo;
+            nodos = new HashMap<Integer,Nodo<E>>();
             nodos.put(contenido.hashCode(), nuevo);
             return;
         }
         Nodo<E> padre = nodos.get(id);
         if (padre == null) {
             raiz = nuevo;
+            nodos = new HashMap<Integer,Nodo<E>>();
             nodos.put(contenido.hashCode(), nuevo);
             return;
         }
@@ -46,7 +48,11 @@ public class Arbol<E> {
         return raiz.toString();
     }
 
-    class Nodo<E> {
+    public Nodo<E> getRaiz() {
+        return raiz;
+    }
+
+    public static class Nodo<E> {
         private int id;
         private Nodo<E> padre;
         private E contenido;
