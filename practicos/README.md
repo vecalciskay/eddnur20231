@@ -15,3 +15,5 @@ materia y al mismo tiempo sirven de repaso al momento del examen final.
 * Práctico 1: [Observer](p1/README.md)
 * Práctico 2: [Filtros de imágenes](p2/README.md)
 * Práctico 3: [Juego en línea](p3/README.md)
+* Práctico 4: [Mejora del juego en línea](p4/README.md)
+* Práctico 5: [Ventas multinivel](p5/README.md)
