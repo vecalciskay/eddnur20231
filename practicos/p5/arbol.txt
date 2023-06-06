@@ -1,0 +1,20 @@
+Alice
+Bob
+Charlie
+David
+Emily
+Fiona
+George
+Hannah
+Isaac
+Jane
+
+Alice Bob
+Alice Charlie
+Bob David
+Bob Emily
+Charlie Fiona
+Charlie George
+Charlie Hannah
+David Isaac
+David Jane
