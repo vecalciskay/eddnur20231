@@ -52,6 +52,16 @@ public class Arbol<E> {
         return raiz;
     }
 
+    public boolean existe(E o) {
+        for (Nodo<E> n:
+             nodos.values()) {
+            if (n.getContenido().equals(o)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static class Nodo<E> {
         private int id;
         private Nodo<E> padre;

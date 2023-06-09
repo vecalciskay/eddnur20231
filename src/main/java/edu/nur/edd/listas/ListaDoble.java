@@ -23,6 +23,18 @@ public class ListaDoble<E> implements Iterable<E> {
         cantidad++;
     }
 
+    public void agregar(E o) {
+        Nodo<E> nuevo = new Nodo<>(o);
+        nuevo.setAnterior(cola);
+        if (cola != null) {
+            cola.setSiguiente(nuevo);
+        } else {
+            raiz = nuevo;
+        }
+        cola = nuevo;
+        cantidad++;
+    }
+
     public int tamano() {
         return cantidad;
     }
@@ -43,6 +55,16 @@ public class ListaDoble<E> implements Iterable<E> {
             actual = actual.getSiguiente();
         }
         return resultado.toString();
+    }
+
+    public E encontrar(E s) {
+        Nodo<E> actual = raiz;
+        while(actual != null) {
+            if (actual.getContenido().equals(s))
+                return actual.getContenido();
+            actual = actual.getSiguiente();
+        }
+        return null;
     }
 
     class Nodo<E> {
