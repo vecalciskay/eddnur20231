@@ -1,6 +1,8 @@
 package edu.nur.edd.arboles;
 
+import edu.nur.edd.listas.Cola;
 import edu.nur.edd.listas.ListaDoble;
+import edu.nur.edd.listas.Pila;
 
 import java.util.HashMap;
 
@@ -62,17 +64,76 @@ public class Arbol<E> {
         return false;
     }
 
+    public void bfs() {
+        for (Nodo<E> nodo:
+             nodos.values()) {
+            nodo.setVisitado(false);
+        }
+
+        Cola<Nodo<E>> visitar = new Cola<>();
+        visitar.push(raiz);
+        while(visitar.tamano() > 0) {
+            Nodo<E> nodoAVisitar = visitar.pull();
+            // ----------------------------------------------
+            // Aqui visitamos el nodo y hacemos algo
+            System.out.print(nodoAVisitar.getContenido() + " ");
+            // ----------------------------------------------
+            nodoAVisitar.setVisitado(true);
+            for(Nodo<E> hijo : nodoAVisitar.getHijos()) {
+                if (hijo.isVisitado())
+                {
+                    continue;
+                }
+                visitar.push(hijo);
+            }
+        }
+    }
+
+    public void dfs() {
+        for (Nodo<E> nodo:
+                nodos.values()) {
+            nodo.setVisitado(false);
+        }
+
+        Pila<Nodo<E>> visitar = new Pila<>();
+        visitar.push(raiz);
+        while(visitar.tamano() > 0) {
+            Nodo<E> nodoAVisitar = visitar.pop();
+            // ----------------------------------------------
+            // Aqui visitamos el nodo y hacemos algo
+            System.out.print(nodoAVisitar.getContenido() + " ");
+            // ----------------------------------------------
+            nodoAVisitar.setVisitado(true);
+            for(Nodo<E> hijo : nodoAVisitar.getHijos()) {
+                if (hijo.isVisitado())
+                {
+                    continue;
+                }
+                visitar.push(hijo);
+            }
+        }
+    }
+
     public static class Nodo<E> {
         private int id;
         private Nodo<E> padre;
         private E contenido;
         private ListaDoble<Nodo<E>> hijos;
+        private boolean visitado;
 
         public Nodo(E contenido) {
             this.padre = null;
             this.id = contenido.hashCode();
             this.contenido = contenido;
             hijos = new ListaDoble<Nodo<E>>();
+        }
+
+        public boolean isVisitado() {
+            return visitado;
+        }
+
+        public void setVisitado(boolean visitado) {
+            this.visitado = visitado;
         }
 
         public E getContenido() {
