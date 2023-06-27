@@ -17,5 +17,16 @@ public class TestExpresion {
         arbol.agregarNodo(b.hashCode(), n2, PosicionNodo.Izquierda);
         arbol.agregarNodo(b.hashCode(), n3, PosicionNodo.Derecha);
         System.out.println(arbol);
+
+        ExpresionAritmetica expr1 = new ExpresionAritmetica("5+7");
+        System.out.println(expr1);
+        ExpresionAritmetica expr2 = new ExpresionAritmetica("   4  - 23");
+        System.out.println(expr2);
+        ExpresionAritmetica expr3 = new ExpresionAritmetica("((( 3*(74+ 8))))");
+        System.out.println(expr3);
+        ExpresionAritmetica expr4 = new ExpresionAritmetica("4.5 + (456 / 2)");
+        System.out.println(expr4);
+        ExpresionAritmetica expr5 = new ExpresionAritmetica("(((5+3)+2)-(5*7))/4");
+        System.out.println(expr5);
     }
 }

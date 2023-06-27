@@ -7,6 +7,25 @@ public class Operador extends ObjetoAritmetico {
         operacion = o;
     }
 
+    public Operador(char operador) {
+        switch(operador) {
+            case '+':
+                operacion = Operacion.Suma;
+                break;
+            case '-':
+                operacion = Operacion.Resta;
+                break;
+            case '*':
+                operacion = Operacion.Multiplicacion;
+                break;
+            case '/':
+                operacion = Operacion.Division;
+                break;
+            default:
+                break;
+        }
+    }
+
     @Override
     public String toString() {
         switch(operacion) {
